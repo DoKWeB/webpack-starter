@@ -1,8 +1,11 @@
 module.exports = function () {
 	return {
-		devServer: { // настройки webpack-dev-server
-			stats: 'errors-only', // выводить от webpack только ошибки в консоль
-			port: 9000
+		devServer: {
+			stats: 'errors-only',
+			port: 9000,
+			historyApiFallback: true,
+			hot: true,
+			host: '192.168.1.64',
 		}
 	};
 };

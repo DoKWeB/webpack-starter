@@ -1,4 +1,4 @@
-const path = require('path'); // позволяет работать с путями одинаково на всех платформах
+const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
@@ -12,49 +12,62 @@ const images = require('./webpack/images');
 const babel = require('./webpack/babel');
 
 const PATHS = {
-	src: path.join(__dirname, 'src'), // src path
-	build: path.join(__dirname, 'build') // build path
+	src: path.join(__dirname, 'src'),
+	build: path.join(__dirname, 'build'),
+	github: path.join(__dirname, 'docs')
 };
 
-const common = merge([
-	{
-		entry: {// точка входа приложения
-			'index': PATHS.src + '/pages/index/index.js' // страница index
+function getCommon(env) {
+	let isGithub = env === 'github',
+		pathKey = isGithub ? 'github' : 'build';
+	
+	return merge([
+		{
+			entry: {
+				'index': PATHS.src + '/index.js'
+			},
+			output: {
+				path: PATHS[pathKey],
+				filename: 'js/[name].js'
+			},
+			plugins: [
+				new HtmlWebpackPlugin({
+					filename: 'index.html',
+					chunks: ['index', 'common'],
+					template: PATHS.src + '/index.pug',
+					github: isGithub
+				}),
+				new webpack.optimize.CommonsChunkPlugin({
+					name: 'common'
+				}),
+				new webpack.DefinePlugin({
+					ENV: JSON.stringify(env)
+				})
+			]
 		},
-		output: { // точка выхода
-			path: PATHS.build, // куда поместить бандл
-			filename: 'js/[name].js' // имя бандла
-		},
-		plugins: [
-			new HtmlWebpackPlugin({
-				filename: 'index.html',
-				chunks: ['index', 'common'],
-				template: PATHS.src + '/pages/index/index.pug'
-			}),
-			new webpack.optimize.CommonsChunkPlugin({
-				name: 'common'
-			})
-		]
-	},
-	pug(),
-	images(),
-	babel()
-]);
+		pug(),
+		images(),
+		babel()
+	]);
+}
 
 module.exports = function (env) {
-	if (env === 'production') {
+	if (env === 'production' || env === 'github') {
 		return merge([
-			common,
+			getCommon(env),
 			extractCSS(),
 			uglifyJS()
 		]);
 	}
 	if (env === 'development') {
 		return merge([
-			common,
+			getCommon(env),
 			devserver(),
 			sass(),
-			css()
+			css(),
+			{
+				devtool: 'source-map'
+			}
 		]);
 	}
 };

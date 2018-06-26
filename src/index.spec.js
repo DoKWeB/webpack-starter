@@ -1,7 +1,15 @@
-import sum from './index';
+import {Square} from './Figures/Square';
+import {Rectangle} from './Figures/Rectangle';
 
-describe('Test sum function', function () {
-	it('sum(1, 2) should be 3', function () {
-		expect(sum(1, 2)).toBe(3);
+describe('Test Square', function () {
+	it('Test getArea method', function () {
+		let square = new Square(4);
+		expect(square.getArea()).toBe(16);
+	});
+});
+describe('Test Rectangle', function () {
+	it('Test getArea method', function () {
+		let rectangle = new Rectangle(4, 2);
+		expect(rectangle.getArea()).toBe(8);
 	});
 });

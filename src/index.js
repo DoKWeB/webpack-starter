@@ -1,5 +1,7 @@
-export default function sum(a, b) {
-	return a + b;
-}
+import {Square} from './Figures/Square';
+import {Rectangle} from './Figures/Rectangle';
 
-console.log(sum(1, 2));
+let square = new Square(4),
+	rectangle = new Rectangle(2, 4);
+
+console.log(`Square area is ${square.getArea()}. Rectangle area is ${rectangle.getArea()}`);

@@ -5,7 +5,7 @@ module.exports = function () {
 			port: 9000,
 			historyApiFallback: true,
 			hot: true,
-			host: '192.168.1.64',
+			//host: '192.168.1.64', // for network share
 		}
 	};
 };

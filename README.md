@@ -1,6 +1,6 @@
 # webpack-starter
 
-pug + scss + es6 + unit-tests + coverage + e2e-tests
+pug + scss + es6 + unit-tests + coverage + e2e-tests + node server
 
 # Usage
 
@@ -13,8 +13,11 @@ pug + scss + es6 + unit-tests + coverage + e2e-tests
 ## Production build:
 > npm run build
 
-## Dev-server:
+## Dev-server (live build):
 > npm run start
+
+## Dev-server (live build) with node server (/api):
+> npm run start:with:nodeserv
 
 ## Build prod and run static prod server:
 > npm run prodserv
@@ -38,3 +41,6 @@ Coverage path is */tpm*
 
 ## Clean build and temp directories
 > npm run clean
+
+## Check code style:
+> npm run codestyle

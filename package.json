@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "webpack-dev-server --hot --env development",
+    "start:with:nodeserv": "concurrently \"npm run start\" \"node ./server\"",
     "build": "webpack --env production",
     "build:github": "webpack --env github",
     "serv": "static build",
@@ -13,7 +14,8 @@
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "npm run update-webdriver && webpack --config webpack.protractor.config.js",
     "protractor": "protractor e2e-tests/config.js",
-    "clean": "rimraf build tmp e2e-tests/tmp"
+    "clean": "rimraf build tmp e2e-tests/tmp",
+    "codestyle": "eslint src"
   },
   "author": "",
   "license": "ISC",
@@ -52,5 +54,10 @@
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.3",
     "webpack-merge": "^4.1.1"
+  },
+  "dependencies": {
+    "concurrently": "^3.6.0",
+    "eslint": "^5.0.1",
+    "express": "^4.16.3"
   }
 }

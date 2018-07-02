@@ -1,10 +1,9 @@
-module.exports = function (paths) {
+module.exports = function () {
     return {
         module: {
             rules: [
                 {
                     test: /\.js$/,
-                    include: paths,
                     use: ['babel-loader']
                 }
             ]

@@ -1,6 +1,6 @@
 # webpack-starter
 
-pug + scss + es6 + unit-tests + coverage + e2e-tests + node server
+pug + scss + postcss + es6 + unit-tests + coverage + e2e-tests + node server
 
 # Usage
 

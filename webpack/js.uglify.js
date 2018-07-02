@@ -1,10 +1,10 @@
 const webpack = require('webpack');
 
-module.exports = function () {
+module.exports = function (env) {
     return {
         plugins: [
             new webpack.optimize.UglifyJsPlugin({
-                sourceMap: true,
+                sourceMap: env === 'development',
                 compress: {
                     warnings: false
                 }

@@ -1,5 +1,7 @@
+require('babel-core/register');
+
 exports.config = {
-    specs: ['./tpm/index.spec.js'],
+    specs: ['./e2e-tests/tmp/index.spec.js'],
     capabilities: {
         browserName: 'chrome'
     },

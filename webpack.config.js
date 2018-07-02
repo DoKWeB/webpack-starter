@@ -55,16 +55,16 @@ module.exports = function (env) {
     if (env === 'production' || env === 'github') {
         return merge([
             getCommon(env),
-            extractCSS(),
-            uglifyJS()
+            extractCSS(env),
+            uglifyJS(env)
         ]);
     }
     if (env === 'development') {
         return merge([
             getCommon(env),
             devserver(),
-            sass(),
-            css(),
+            sass(env),
+            css(env),
             {
                 devtool: 'source-map'
             }

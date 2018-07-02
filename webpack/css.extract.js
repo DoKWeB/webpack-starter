@@ -1,25 +1,31 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const postcss = require('./postcss');
 
-module.exports = function (paths) {
+module.exports = function (env) {
     return {
         module: {
             rules: [
                 {
                     test: /\.scss$/,
-                    include: paths,
                     use: ExtractTextPlugin.extract({
                         publicPath: '../',
                         fallback: 'style-loader',
-                        use: ['css-loader', 'sass-loader']
+                        use: [
+                            'css-loader',
+                            postcss(env),
+                            'sass-loader'
+                        ]
                     })
                 },
                 {
                     test: /\.css$/,
-                    include: paths,
                     use: ExtractTextPlugin.extract({
                         fallback: 'style-loader',
-                        use: 'css-loader'
+                        use: [
+                            'css-loader',
+                            postcss(env)
+                        ]
                     })
                 }
             ]

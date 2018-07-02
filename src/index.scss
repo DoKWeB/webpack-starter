@@ -1,3 +1,17 @@
 h1 {
   color: #999;
 }
+
+.pos-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.unselectable {
+	user-select: none;
+	background: linear-gradient(to bottom, white, black);
+	display: grid;
+	transition: all .5s;
+}
